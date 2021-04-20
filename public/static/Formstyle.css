@@ -1,0 +1,33 @@
+header {
+    padding: 3rem;
+}
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.brand{
+    width: 100px;
+}
+nav a {
+    width: 25%;
+    min-width: 200px;
+}
+@media screen and (max-width: 720px){
+    header {
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 1rem;
+    }
+   nav {
+       flex-direction: column;
+   }
+   nav a:first-child {
+       margin-bottom: 10px;
+       margin-right: 0 !important;
+   }
+   .details {
+       margin-top: .7rem;
+       padding-left: 10px !important;
+   }
+}
