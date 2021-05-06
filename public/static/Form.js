@@ -1,7 +1,5 @@
 var alert = document.querySelector(".alert")
-var modal = new bootstrap.Modal(document.querySelector('.modal'))
-var image = document.querySelector("#image") 
-var previewLocation = document.querySelector("#preview")
+
 
 document.querySelector("noscripts").style.display="none"
     const form = document.querySelector("form")
