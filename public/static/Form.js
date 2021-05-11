@@ -15,7 +15,7 @@ document.querySelector("noscripts").style.display="none"
              throw "Make sure all inputs are filled correctly"
          }
         //  making sure regnumber is ten digits
-         if(input.name== "regnumber"){
+         if(input.name== "regNumber"){
              if(input.value.length !== 10){
                 throw "your regnumber should be 10 characters long"
              }

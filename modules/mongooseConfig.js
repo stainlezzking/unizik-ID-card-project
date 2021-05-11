@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-
+const fs = require("fs")
 let collection ;
 function dbSetUp(){
 mongoose.connect("mongodb://localhost:27017/unizikID",{useNewUrlParser:true, useUnifiedTopology:true})
@@ -19,16 +19,23 @@ mongoose.connect("mongodb://localhost:27017/unizikID",{useNewUrlParser:true, use
 
 dbSetUp()
 
-function addToDB(student){
-    collection.findOne({regNumber : student.reg}, function(err, data){
+ function  addToDB(student){
+   return collection.findOne({regNumber : student.regNumber}, function(err, data){
         if(err) console.log(err)
         if(data){
-            return regNumber
+            fs.unlinkSync(student.path)
+            console.log("user already exist :" + data)
+            return data
         }else{
-            new collection(student).save()
-            .then(data=> data.reg )
+        
+            return new collection(student).save()
+            .then(data=>{ 
+                console.log("new user created:" + data)
+                return data
+            })
         }
     })
+    
 }
 module.exports = {
     collection,

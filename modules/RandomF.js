@@ -19,8 +19,13 @@ module.exports.bodyCheck = function(req,res){
     }
     if(pass){
         const student = {...req.body, path : req.file.path}
-        const regN =  addToDB(student)
-        res.send("received")
+        addToDB(student).then(user=>{
+            user = {...student}
+            return res.render("idCard", {user})
+        }).catch(err=>{
+            console.log("an error occured in the addToBD function block:" + err.message)
+           return res.send("something went wrong!! try again later or contact us ")
+        })
     }
  
 }
