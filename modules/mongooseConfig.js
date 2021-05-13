@@ -21,7 +21,7 @@ dbSetUp()
 
  function  addToDB(student){
    return collection.findOne({regNumber : student.regNumber}, function(err, data){
-        if(err) console.log(err)
+        if(err) return console.log(err.message)
         if(data){
             fs.unlinkSync(student.path)
             console.log("user already exist :" + data)

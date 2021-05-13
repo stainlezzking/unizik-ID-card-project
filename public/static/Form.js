@@ -21,7 +21,7 @@ document.querySelector("noscripts").style.display="none"
              }
          }
          if(input.name == "department"){
-           if(!/^[a-zA-Z]*$/.test(input.value)){
+           if(!/^[a-zA-Z ]*$/.test(input.value)){
                throw "your department should contain just texts"
            }
          }
