@@ -9,17 +9,44 @@ const { addToDB, collection } = require("./modules/mongooseConfig.js")
 app.use("/static", express.static(__dirname+"/public/static"))
 app.use("/uploads", express.static(__dirname+"/uploads"))
 app.set("view engine", "ejs")
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(express.json())
 
 
 app.get("/", function(req,res){
     res.render("index")
 })
-app.get("/test", function(req,res){
-    res.render("qrcodetest")
-})
+
 app.get("/create", function(req,res){
     res.render("FormDetails")
+})
+app.get("/test", function(req,res){
+    collection.findOne({regNumber: 2017244070}).then(user=>{
+        console.log(user)
+        res.render("details",{user})
+    })
+})
+app.get("/findStudent", function(req,res){
+    res.render("FindStudent")
+})
+app.post("/findStudent", function(req,res){
+    collection.findOne({regNumber: req.body.regNumber}, function(err,user){
+        if(err){
+           return res.json({err: err.message})
+        }
+        if(!user){
+            return res.json({err: "no student found make sure the qrCode is positioned properly"})
+        }
+        if(user){
+            return res.render("details", {user}, function(err,str){
+                if(err){
+                    console.log(err)
+                }else{
+                    console.log(str)
+                    res.json({success:str})
+                }
+            })
+        }
+    })
 })
 
 app.get("/ID", function(req,res){
