@@ -81,10 +81,10 @@ app.post("/create",(req,res)=>{
 })
 })
 
+const PORT = process.env.PORT || 5000
 
-
-app.listen(5000, function(){
-    console.log("server up and runnig on port 5000")
+app.listen(PORT, function(){
+    console.log(`server up and runnig on port ${PORT}`)
 })
 
  

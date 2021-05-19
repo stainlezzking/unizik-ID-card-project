@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 const fs = require("fs")
+require('dotenv').config()
 let collection ;
 function dbSetUp(){
-mongoose.connect("mongodb://localhost:27017/unizikID",{useNewUrlParser:true, useUnifiedTopology:true})
-
-
+// mongoose.connect("mongodb://localhost:27017/unizikID",{useNewUrlParser:true, useUnifiedTopology:true})
+mongoose.connect("mongodb+srv://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@todotest.pephm.mongodb.net/"+process.env.DB_LOCATION+"?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology:true})
     const studentSchema = new mongoose.Schema({
         name: String,
         regNumber : Number,
