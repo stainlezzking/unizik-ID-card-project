@@ -49,18 +49,6 @@ app.post("/findStudent", function(req,res){
     })
 })
 
-app.get("/ID", function(req,res){
-    collection.findOne({regNumber: 2011000000}, function(err,user){
-        if(err) console.log(err,message)
-        if(user){
-            res.render("idCard", {user})
-        }else{
-            res.render("no user in the db with regnumber of 20172444070")
-        }
-    })
-})
-
-
 app.post("/create",(req,res)=>{
     upload(req,res, function(err){
         //  here multer error is gon be called on the file size
