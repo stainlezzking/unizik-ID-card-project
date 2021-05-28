@@ -34,7 +34,7 @@ app.post("/findStudent", function(req,res){
            return res.json({err: err.message})
         }
         if(!user){
-            return res.json({err: "no student found make sure the qrCode is positioned properly"})
+            return res.json({err: "no student was found try again"})
         }
         if(user){
             return res.render("details", {user}, function(err,str){

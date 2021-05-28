@@ -8,8 +8,7 @@ module.exports.bodyCheck = function(req,res){
             fs.unlinkSync(req.file.path)
             Fields ={error:"Make sure all field is filled",...req.body}
             return res.render("FormDetails", {Fields})
-        }
-        
+        } 
     }
     if(req.body["regNumber"].length !== 10){
         pass = false

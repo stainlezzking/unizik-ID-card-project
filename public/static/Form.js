@@ -26,7 +26,11 @@ document.querySelector("noscripts").style.display="none"
            }
          }
          
+         
      });
+     if(!document.querySelector("select").value){
+         throw "your bloodGroup option is empty"
+     }
      form.submit()
     } catch(err){
         alert.innerText = err

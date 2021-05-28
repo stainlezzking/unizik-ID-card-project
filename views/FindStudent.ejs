@@ -13,22 +13,6 @@
     *{
         box-sizing: border-box;
     }
-    .camera_cover {
-        width: 8vw;
-        height: 8vw;
-        min-width: 80px;
-        min-height: 80px;
-        background: aqua;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: 0px 8px 20px gray;
-    }
-    svg{
-        width: 70%;
-    }
     body {
         height: 100vh;
         display: flex;
@@ -39,14 +23,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
+        position: relative;
+        overflow: scroll;
+    }
+    .camera_case::-webkit-scrollbar{
+        display: none;
     }
     #preview {
         width: 100%;
         margin:0px auto;
-        height: 0px;
-        transition: height 1s ;
         padding-bottom:10px;
+        height: 50%;
     }
  .loader {
   animation: spin 1s infinite linear;
@@ -57,11 +44,10 @@
   box-sizing: border-box;
   height: 20vmin;
   left: calc(50% - 10vmin);
-  position: fixed;
+  position: absolute;
   top: calc(50% - 10vmin);
   width: 20vmin;
   z-index: 1;
-  display: none;
 }
 .loader:before {
   animation: spin 2s infinite linear;
@@ -91,15 +77,51 @@
   top: 2vmin;
   width: 12vmin;
 }
+.camera_case__child{
+    width: 100vw;
+    position: absolute;
+    height: 100%;
+    transition: top .6s ease, left .6s ease-in-out;
+}
+#searchInput {
+    max-width: 440px;
+    margin: 0 auto;
+}
+.in_view{
+    top: 0;
+    left: 0;
+}
+.off_view{
+    top: 0;
+    left: 100vw;
+}
+.alert{
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: .2;
+    margin: 0 auto;
+    transition: left .25s ease-in-out, top .9s ease-in;
+}
+#preview{
 
+}
+.showAlert{
+    top: 20%;
+    opacity: .7;
+}
 @keyframes spin {
   100% {
     transform: rotate(360deg);
   }
 }
+
     
 </style>
 <body>
+    <div id="signal" class="alert alert-danger" role="alert">
+    </div>
     <header class="container-fluid bg-light d-flex align-items-center">
         <a href="/" class="brand">
             <img src="static/unizik.png" class="img-fluid" alt="the university of unizik brand">        
@@ -112,73 +134,29 @@
         </div>
     </header>
 <section class="camera_case">
-    <div class="loader"></div>
-    <video id="preview">
-        
-    </video>
-    <div class="camera_cover">
-        <svg version="1.1" id="Layer_1"  x="0px" y="0px"
-                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                <g>
-                    <g>
-                        <path d="M225.967,93.44V33.223H70.253V93.44H0v122.516v262.821h512V215.956V93.44H225.967z M85.461,48.431h125.298V93.44H85.461
-                            V48.431z M496.792,215.956H386.426v15.208h110.366v232.405H15.208V231.164h70.545c-8.502,16.477-13.308,35.16-13.308,54.944
-                            c0,66.292,53.933,120.226,120.226,120.226S312.897,352.4,312.897,286.108c0-19.784-4.807-38.466-13.308-54.944h66.558v-15.208
-                            h-75.9c-21.85-30.306-57.445-50.074-97.576-50.074s-75.726,19.768-97.576,50.074H15.208V108.648h55.046h155.714h270.825V215.956z
-                            M87.653,286.108c0-57.907,47.111-105.018,105.018-105.018c57.907,0,105.018,47.111,105.018,105.018
-                            s-47.111,105.018-105.018,105.018C134.764,391.126,87.653,344.015,87.653,286.108z"/>
-                    </g>
-                </g>
-                <g>
-                    <g>
-                        <path d="M336.213,134.625v55.354h115.57v-55.354H336.213z M436.575,174.771h-85.154v-24.938h85.154V174.771z"/>
-                    </g>
-                </g>
-                <g>
-                    <g>
-                        <path d="M192.671,194.959c-50.26,0-91.15,40.889-91.15,91.149c0,50.26,40.89,91.149,91.15,91.149
-                            c50.26,0,91.149-40.89,91.149-91.149C283.82,235.848,242.93,194.959,192.671,194.959z M192.671,362.049
-                            c-41.875,0-75.942-34.068-75.942-75.941c0-41.874,34.068-75.941,75.942-75.941s75.941,34.068,75.941,75.941
-                            C268.612,327.983,234.545,362.049,192.671,362.049z"/>
-                    </g>
-                </g>
-                <g>
-                    <g>
-                        <path d="M131.936,286.108h15.208c0-25.103,20.423-45.525,45.526-45.525v-15.208C159.181,225.375,131.936,252.619,131.936,286.108z
-                            "/>
-                    </g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-        </svg>
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center camera_case__child in_view " data-selection="method">
+            <button class="btn btn-success p-2 me-2" data-target="searchBar" > Search with regNumber</button>
+            <button class="btn btn-primary p-2"href="/create" data-target="barCode"> scan bar code </button>
+    </div>
+    <div class="camera_case__child align-items-center justify-content-center bg-light d-flex off_view">
+        <div class="loader"> </div>
+        <section id="searchBar" class="w-100">
+            <form id="form">
+                <div class="input-group input-group-lg">
+                    <input type="search"  id="searchInput" class="form-control " placeholder="search by registration number">
+                </div>
+            </form>
+            <button class="btn btn-danger mx-auto d-block my-4 cancel"> cancel</button>
+
+        </section>
+        <section id="barCode">
+            <button class="btn btn-danger mx-auto my-2 cancel"> cancel</button>
+            <video id="preview">
+            
+            </video>
+        </section>
+
+
     </div>
 
 </section>
@@ -186,40 +164,87 @@
     <script src="static/instascan.min.js"></script>
 <script>
         // cdn="http://rawgit.com/schmich/instascan-builds/master/instascan.min.js"
-    svgDuplicate = `${document.querySelector(".camera_cover").innerHTML}`
 
-document.querySelector(".camera_cover").addEventListener("click",function(e){
-    this.classList.toggle("scanning")
-    if(this.classList.contains("scanning")){
-        this.innerHTML= `<div style="font-size:2rem; font-weight:bold;"> X </div>`
-        document.querySelector("#preview").style.height = "50%"
+
+    const form = document.querySelector("#form")
+    document.querySelectorAll("div[data-selection=method] button").forEach(button=>{
+        button.addEventListener("click", (e)=>{
+            e.target.getAttribute("data-target")=== "barCode" ? launchCamera() : null ;
+            // get the second camera_case_child div and set its children to display none except the target
+            Array.from(e.target.parentElement.nextElementSibling.children).forEach(child=> child.id === e.target.getAttribute("data-target")  ? child.style.display= "block" : child.style.display = "none")
+            e.target.parentElement.nextElementSibling.classList.remove("off_view")
+            e.target.parentElement.nextElementSibling.classList.add("in_view")
+            e.target.parentElement.classList.remove("in_view")
+            e.target.parentElement.classList.add("off_view")
+        })
+    })
+
+
+//   icing, make the outline red when the input format is wrong
+form.querySelector("input").addEventListener("keydown",(e)=>{
+      if(!(/^[0-9]/.test(e.target.value.trim()))){
+        e.target.style.boxShadow = "0 0 0 0.25rem rgb(220 53 69 / 50%)";
+      }
+      if((/^[0-9]/.test(e.target.value.trim()))){
+        e.target.style.boxShadow = "0 0 0 0.25rem rgb(13 110 253 / 50%)";
+      }
+     
+  })
+
+ form.addEventListener("submit", (e)=>{
+      e.preventDefault()
+      const reg = form.querySelector("input").value.trim()
+      try{
+            if(!(/^[0-9]{10}$/.test(reg))){
+                throw " your regnumber is incorrect"
+            }
+           makeCall(reg)
+      }catch(err){
+            handleAlert(err)
+      }
+  })
+
+let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+//  listener for when the code has being read
+     scanner.addListener('scan', function (reg) {
+           if(reg && reg.length === 10 && typeof Number(reg) == "number" ){
+                document.querySelector(".loader").style.display = "block"
+                document.querySelector("#barCode").style.display = "none"
+                document.querySelector("#barCode button").style.display = "none"
+                scanner.stop()
+                makeCall(reg)
+           }
+    });
+//  cancel button to go back to page default way
+    document.querySelectorAll("button.cancel").forEach(cancel=>{
+        cancel.onclick = function(e){
+            // checking if the button element has a sibling after it : only the video element is after the button, so scanner stop 
+       e.target.nextElementSibling ? scanner.stop() : null ;
+       const inView = document.querySelector(".in_view")
+       const offView = document.querySelector(".off_view")
+       offView.classList.remove("off_view")
+       offView.classList.add("in_view")
+       inView.classList.remove("in_view")
+       inView.classList.add("off_view")
+    }
+    })
+
+     
+function launchCamera(){
         Instascan.Camera.getCameras().then(function (cameras) {
          if (cameras.length > 0) {
             scanner.start(cameras[0]);
          } else {
-            console.error('No cameras found.');
+            handleAlert('No cameras found.');
             }
         }).catch(function (e) {
             console.error(e.message);
         });
+}
 
-    }else{
-        this.innerHTML= svgDuplicate
-        document.querySelector("#preview").style.height = "0px"
-        scanner.stop()
-    }
-} )
-  
-   
-let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-     scanner.addListener('scan', function (reg) {
-           if(reg && reg.length === 10 && typeof Number(reg) == "number" ){
-                document.querySelector("#preview").style.height = "0px"
-                document.querySelector(".camera_cover").style.display = "none"
-                document.querySelector(".loader").style.display = "block"
-                scanner.stop()
-                console.log(reg)
-                try{
+    //  request
+function makeCall(reg){
+    try{
                     fetch("/findStudent",{
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
@@ -227,20 +252,30 @@ let scanner = new Instascan.Scanner({ video: document.getElementById('preview') 
                 })
                 .then(data=> data.json())
                 .then((data)=>{
-                    if(data.err){
-                        alert(data.err)
+                document.querySelector(".loader").style.display = "none"
+                if(data.err){
+                        handleAlert(data.err)
+                        scanner.start()
+                        document.querySelector("#barCode").style.display = "block"
+                        document.querySelector("#barCode button").style.display = "block"
                     }
-                    if(data.success){
+                if(data.success){
                         document.querySelector("body").innerHTML = data.success
                     }
                 })
-                }catch(err){
+     }catch(err){
                     console.log(err)
                 }
-           }
-    });
-     
+}
 
+// function to call alert box
+function handleAlert(message){
+    document.querySelector("#signal").innerText = message
+    document.querySelector("#signal").classList.add("showAlert")
+    setTimeout(()=>{
+    document.querySelector("#signal").classList.remove("showAlert")
+    },3000)
+}
 
 </script>
 </section>
