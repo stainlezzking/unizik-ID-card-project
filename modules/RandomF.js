@@ -18,6 +18,7 @@ module.exports.bodyCheck = function(req,res){
     }
     if(pass){
         const student = {...req.body, path : req.file.path}
+        console.log("this is what is about to be saved" +student)
         addToDB(student).then(user=>{
             user = {...student}
             return res.render("idCard", {user})

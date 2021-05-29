@@ -111,7 +111,7 @@
             <div class="details">
                 <h2> This is an official Unizik ID </h2>
                 <div>
-                    <small class="text-success"> if you found the ID card please return to the school or contact the owner. </small>
+                    <small class="text-success"> if found, the ID card should be returned to the school or appropriate authorities. </small>
                 </div>
             </div>
         </header>
@@ -123,7 +123,7 @@
                     </div>
                     
                     <div class="profile">
-                        <img src="uploads/qs5First1.jpg" alt="your passport image" class="thumbnail">
+                        <img src="<%= user.path %>" alt="your passport image" class="thumbnail">
                         <div class="check"><i class="fas fa-check"></i></div>
                         <h3 class="name"><%=user.name%></h3>
                         <p class="title"><%=user.regNumber%> </p>
@@ -139,7 +139,7 @@
                            Phone: <%= user.phone %>
                         </div>
                         <div class="box">
-                            BloodGroup : empty for now
+                            BloodGroup : <%= user.BloodGroup %>
                          </div>
                     </div>
                 </div>
