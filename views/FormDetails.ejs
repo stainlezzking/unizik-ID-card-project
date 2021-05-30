@@ -9,6 +9,42 @@
     <title>Create Your Id Card</title>
     <link rel="shortcut icon" href="static/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="static/headerStyles.css"/>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        :root{
+            --width : 106.25px;
+            --heigth: 131.25px;
+        }
+    .myModalCreation{          
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        }
+        .myModal_footer{
+            height: 20%;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .myModal_footer button:nth-child(2) {
+            margin: 0 20px;
+        }
+        .myModal_img {
+            display: block;
+            height: calc(var(--heigth) * 2);
+            width: 100%;
+            max-width: calc(var(--width) * 2);
+            border: 2px solid black;
+            margin: 0 auto;
+        }
+        /* 106.25 X 131.25 */
+    </style>
 </head>
 <body>
     <noscripts> You need to have javascript enabled</noscripts>
@@ -30,7 +66,19 @@
 <% }else{ %>
     <% var javP = Fields.error %>
     <% }%>
-    <div class="container mt-4">
+    <div class="myModalCreation bg-light">
+            <div class="modal_head">
+            <div class="display-2 mb-1  ps-1"> Preview</div>
+            <div class=" ps-2"> if image doesn't fit well, crop before upload</div>
+            <hr class="mt-2">
+        </div>
+            <img src="static/unizik.png" class="myModal_img" alt="">
+        <div class="myModal_footer">
+            <button class="btn btn-success">Accept</button>
+            <button class="btn btn-danger"> Cancel </button>
+        </div>
+    </div>
+    <div class="container mt-4" style="position: relative;">
         <form method="POST" action="/create" class="row bg-light py-3 " autocomplete="off" enctype="multipart/form-data">
             <div class="col-12 mx-auto col-md-10 col-lg-7">
                 <div class="alert alert-danger" >     
@@ -77,7 +125,6 @@
             <button type="submit" class="btn btn-primary col-4 col-lg-3 mx-auto"> Submit</button>
         </form>
     </div>
-  <img src="" class="outputImage image-fluid" alt="" srcset="">
     <script>
        if("<%= javP %>"){
            const alert = document.querySelector(".alert")

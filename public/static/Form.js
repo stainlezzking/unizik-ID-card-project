@@ -53,3 +53,32 @@ document.querySelector("noscripts").style.display="none"
             }
         })
     })
+
+// ######## PREVIEW FEATURE #################
+const fileInput = document.querySelector("input[type=file]")
+const Modal = document.querySelector(".myModalCreation")
+
+const reader = new FileReader()
+
+reader.onload = function(e){
+    const src = reader.result
+    document.querySelector(".myModal_img").setAttribute("src", src)
+}
+fileInput.onchange = function(e){
+    if(e.target.value){
+        reader.readAsDataURL(fileInput.files[0])
+        Modal.style.display = "flex"
+    }
+}
+
+Modal.addEventListener("click", function(e){
+    if(e.target.tagName === "BUTTON"){
+        if(e.target.innerText === "Accept"){
+            Modal.style.display = "none"
+        }
+        if(e.target.innerText === "Cancel"){
+            fileInput.value = null
+            Modal.style.display = "none"
+        }
+    }
+})
