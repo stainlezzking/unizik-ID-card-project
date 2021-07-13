@@ -17,8 +17,9 @@ module.exports.bodyCheck = function(req,res){
         return res.render("FormDetails", {Fields})
     }
     if(pass){
-        const student = {...req.body, path : req.file.path}
-        console.log("this is what is about to be saved" +student)
+        const picture = fs.readFileSync(req.file.path)
+        const student = {...req.body, picture, mimeType: req.file.mimetype }
+        console.log("this is the line before your data is saved" )
         addToDB(student).then(user=>{
             user = {...student}
             return res.render("idCard", {user})
@@ -26,6 +27,9 @@ module.exports.bodyCheck = function(req,res){
             console.log("an error occured in the addToBD function block:" + err.message)
            return res.send("something went wrong!! try again later or contact us ")
         })
+        // Note: I could have easily unlinked all the images from the upload folder 
+        // after storig them, but since the servers are not persistent (heroku), might as 
+        // well let them delete it them selfs
     }
  
 }

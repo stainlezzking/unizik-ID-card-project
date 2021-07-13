@@ -19,12 +19,7 @@ app.get("/", function(req,res){
 app.get("/create", function(req,res){
     res.render("FormDetails")
 })
-app.get("/test", function(req,res){
-    collection.findOne({regNumber: 2017244070}).then(user=>{
-        console.log(user)
-        res.render("details",{user})
-    })
-})
+
 app.get("/findStudent", function(req,res){
     res.render("FindStudent")
 })
@@ -41,7 +36,6 @@ app.post("/findStudent", function(req,res){
                 if(err){
                     console.log(err)
                 }else{
-                    console.log(str)
                     res.json({success:str})
                 }
             })

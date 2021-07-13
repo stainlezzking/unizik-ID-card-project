@@ -12,7 +12,8 @@ function dbSetUp(){
         gradYear : String,
         phone: Number,
         BloodGroup: String,
-        path: String
+        picture: Buffer,
+        mimeType: String
     })
     
     collection = mongoose.model("student",studentSchema)

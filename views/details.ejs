@@ -22,12 +22,12 @@
  
     .wrapper {
       width: 320px;
-      height: 540px;
       background: #FDFEFF;
       transition: background 0.6s ease;
       border-radius: 10px;
       padding: 20px 20px 20px 20px;
       box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+
     }
     .wrapper .top-icons i {
       color: #080911;
@@ -96,14 +96,18 @@
       text-transform: uppercase;
     }
     .box{
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.187);
         width: 100%;
-        padding: 1em; 
+        padding: 1em;
+        margin-bottom: 10px; 
     }
     .contain{
         padding: 20px;
     }
     </style>
+       <!--  converting the buffer into base-64 -->
+<% const url = "data:"+user.mimeType+";charset=utf-8;base64,"+Buffer.from(user.picture).toString("base64") %>
+
         <header class="container-fluid bg-light d-flex align-items-center mb-2">
             <a href="/" class="brand">
                 <img src="static/unizik.png" class="img-fluid" alt="the university of unizik brand">        
@@ -123,7 +127,7 @@
                     </div>
                     
                     <div class="profile">
-                        <img src="<%= user.path %>" alt="your passport image" class="thumbnail">
+                        <img src="<%= url %>" alt="your passport image" class="thumbnail">
                         <div class="check"><i class="fas fa-check"></i></div>
                         <h3 class="name"><%=user.name%></h3>
                         <p class="title"><%=user.regNumber%> </p>

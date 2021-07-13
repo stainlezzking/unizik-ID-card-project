@@ -13,7 +13,7 @@ const multerFilter = (req, file, cb) => {
   if (!file.mimetype.startsWith("image")) {
      return cb("Please upload only images.", false);
   }
-  console.log("this place still aint runnning")
+  console.log(file + "from funvtion")
   cb(null, true)
 }
 
