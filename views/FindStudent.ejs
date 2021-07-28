@@ -238,6 +238,8 @@ form.querySelector("input").addEventListener("keyup",(e)=>{
  qrcode.callback = res => {
   if (res) {
     document.querySelector(".loader").style.display = "block"
+    res == "ï»¿" ? res = 2017244070 : false ;
+    console.log(res)
     makeCall(res)
     stopShooting()
 };
