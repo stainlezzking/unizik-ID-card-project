@@ -22,10 +22,12 @@ module.exports.bodyCheck = function(req,res){
         const student = {...req.body, picture, mimeType: req.file.mimetype, path:req.file.path }
         console.log(student)
         console.log("this is the line before your data is saved" )
-        addToDB(student).then(user=>{
-            console.log(user)
+        addToDB(student).then(user=> {
+            user= {...student}
             return res.render("idCard", {user})
-        }).catch(err=>{
+        })
+       
+        .catch(err=>{
             console.log("an error occured in the addToBD function block:" + err.message)
            return res.send("something went wrong!! try again later or contact us ")
         })

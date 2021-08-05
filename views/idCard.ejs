@@ -58,7 +58,7 @@
 </head>
 <body>
    <!--  converting the buffer into base-64 -->
-<% const url = "data:"+user.mimeType+";charset=utf-8;base64,"+Buffer.from(user.picture).toString("base64") %>
+   <% const url = "data:"+user.mimeType+";charset=utf-8;base64,"+Buffer.from(user.picture).toString("base64") %>
 
     <header class="container-fluid bg-light d-flex align-items-center no-print">
         <a href="/" class="brand">
