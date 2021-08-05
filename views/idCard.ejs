@@ -89,7 +89,7 @@
 
                 <p> REG NO : <%= user.regNumber %> </p>
                 <p> DEPT : <%= user.department %> </p>
-                <p> PHONE : 0<%= user.phone.startsWith("+") || user.phone.startsWith(0) ? user.phone : 0+user.phone%> </p>
+                <p> PHONE : <%= user.phone.toString().startsWith("+") || user.phone.toString().startsWith("0") ? user.phone : "0" + user.phone%> </p>
                 <p> BLOODGROUP : <%= user.BloodGroup %> </p>
             </div>
         </div>

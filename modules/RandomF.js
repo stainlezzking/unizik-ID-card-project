@@ -18,10 +18,12 @@ module.exports.bodyCheck = function(req,res){
     }
     if(pass){
         const picture = fs.readFileSync(req.file.path)
-        const student = {...req.body, picture, mimeType: req.file.mimetype }
+        console.log(req.file)
+        const student = {...req.body, picture, mimeType: req.file.mimetype, path:req.file.path }
+        console.log(student)
         console.log("this is the line before your data is saved" )
         addToDB(student).then(user=>{
-            user = {...student}
+            console.log(user)
             return res.render("idCard", {user})
         }).catch(err=>{
             console.log("an error occured in the addToBD function block:" + err.message)

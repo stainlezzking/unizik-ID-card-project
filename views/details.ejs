@@ -140,7 +140,7 @@
                             Level: <%= new Date().getFullYear() - new Date(user.regNumber.toString().slice(0,4)).getFullYear() %>00
                         </div>
                         <div class="box">
-                           Phone: <%= user.phone %>
+                           Phone:  <%= user.phone.toString().startsWith("+") || user.phone.toString().startsWith("0") ? user.phone : "0" + user.phone%>
                         </div>
                         <div class="box">
                             BloodGroup : <%= user.BloodGroup %>
