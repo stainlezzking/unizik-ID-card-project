@@ -5,9 +5,7 @@
 
 
 <div align="center"> 
- <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="public/static/unizik.png" alt="Logo" width="120" height="120">
-  </a>
 </div>
 
 ## IT PROJECT
